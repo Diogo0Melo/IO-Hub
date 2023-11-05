@@ -1,0 +1,20 @@
+.sign-card {
+    margin: auto;
+    padding: 4rem;
+    width: 46%;
+    border-radius: 1.6rem;
+    box-shadow: inset 0 0 1rem rgba(0, 0, 0, 0.2);
+}
+.sign-card > h2 {
+    text-align: center;
+    font-size: 2.6rem;
+}
+.sign-card > #signup {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    -ms-grid-column-align: center;
+}
+.sign-card > div > div {
+    margin: 0 1rem;
+}
