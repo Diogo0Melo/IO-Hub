@@ -1,0 +1,13 @@
+/* .select::-webkit-scrollbar {
+    display: none;
+}
+.select::after {
+    display: none;
+    content: "";
+}
+
+.select::before {
+    display: none;
+    content: "";
+    height: 20px;
+} */

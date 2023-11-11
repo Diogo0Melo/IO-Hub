@@ -1,0 +1,28 @@
+.game-card {
+    height: 26rem;
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    box-shadow: rgba(0, 0, 0, 0.5) -2px -2px 4px;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+.game-card:hover {
+    box-shadow: inset 0px 0px 8px rgb(0, 0, 0, 0.5);
+}
+.game-card .game-card-image {
+    margin: 0.2rem 0 0.8rem;
+    height: 100%;
+    width: 99%;
+    align-self: center;
+    background-size: cover;
+    background-position: center;
+}
+.game-card h3 {
+    margin: 0 1rem 0.4rem;
+}
+.game-card .star {
+    height: 1.2rem;
+    margin: 1rem 0.2rem 0;
+}

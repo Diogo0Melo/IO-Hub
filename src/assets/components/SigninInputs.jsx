@@ -4,8 +4,8 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 function SigninInputs(props) {
     const UserInputs = {
-        email: "",
-        password: "",
+        "email-signin": "",
+        "password-signin": "",
     };
     const [user, setUser] = useState(UserInputs);
     return (
@@ -14,27 +14,28 @@ function SigninInputs(props) {
                 className="input"
                 type="email"
                 placeholder="Email"
-                value={user.email}
+                value={user["email-signin"]}
                 setState={setUser}
-                id={"email"}
+                id={"email-signin"}
                 name={"Email"}
             />
             <Input
                 className="input"
                 type="password"
                 placeholder="Password"
-                value={user.password}
+                value={user["password-signin"]}
                 setState={setUser}
-                id={"password"}
+                id={"password-signin"}
                 name={"Senha"}
             />
             <div id="signin-button-container">
                 <Button
                     className="button"
                     type="submit"
-                    title={props.page === "/signup" ? "Cadastrar" : "Entrar"}
+                    title="Entrar"
                     user={user}
                     page={props.page}
+                    to="/"
                 />
             </div>
         </div>

@@ -1,0 +1,75 @@
+.game-container-back-image {
+    padding: 2rem 0 0.2rem;
+    background-attachment: fixed;
+    background-size: contain;
+    background-position: center;
+}
+.game-container-outside {
+    margin: 2rem 20rem;
+    padding: 2rem;
+    padding-bottom: 2rem;
+    border-radius: 1.6rem 1.6rem 0 0;
+    background: rgb(255, 255, 255, 0.5);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.8);
+}
+
+.game-container-inside {
+    padding: 2rem 2rem;
+    background: rgb(255, 255, 255, 0.5);
+    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.8);
+}
+
+.game-container-inside > div > div {
+    display: flex;
+    gap: 2rem;
+}
+.game-container-inside .game-infos {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+.relative {
+    position: relative;
+    top: -4.1rem;
+    border-radius: 0 0 1.6rem 1.6rem;
+}
+.game-infos h2 {
+    font-size: 3.2rem;
+}
+.game-infos p {
+    font-size: 1.6rem;
+}
+.img {
+    min-height: 20rem;
+    min-width: 18rem;
+    background-size: cover;
+    background-position: center;
+    padding: 2rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+}
+.star {
+    height: 3.2rem;
+    margin: 0 0.2rem;
+}
+.pointer {
+    cursor: pointer;
+}
+.space-between {
+    display: flex;
+    justify-content: space-between;
+}
+.category-container {
+    display: flex;
+}
+.category-container > .category {
+    padding: 0.8rem;
+    border-radius: 1rem;
+    background-color: rgb(145, 145, 145);
+}
+#div-button-container {
+    margin-top: 1rem;
+    width: 18rem;
+    > a {
+        width: 100%;
+    }
+}

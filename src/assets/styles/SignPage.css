@@ -1,5 +1,12 @@
-h1 {
+#logo-container-in-sign {
+    display: flex;
+    justify-content: center;
+    padding: 1.2rem;
+}
+#logo-container-in-sign > a {
+    color: black;
     text-align: center;
-    margin: 1.6rem 0;
-    font-size: 3.2rem;
+}
+#logo-container-in-sign > a > h1 {
+    font-size: 2.6rem;
 }

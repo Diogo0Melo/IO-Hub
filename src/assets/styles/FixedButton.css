@@ -1,0 +1,13 @@
+#fixed-button {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.8);
+    padding: 16px;
+    border-radius: 50%;
+    height: 80px;
+    cursor: pointer;
+}
+#fixed-button:hover {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+}

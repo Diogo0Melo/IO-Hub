@@ -4,7 +4,21 @@
     border-radius: 1.6rem;
     margin: 0.4rem 0 1.6rem 0;
     border: 1px solid #ccc;
+    background-color: transparent;
 }
+
 .sign-card .input:first-child {
     margin-top: 1.6rem;
+}
+#rating-form-container .input {
+    width: 100%;
+    padding: 1rem 2rem;
+    border: 1px solid #ccc;
+    background-color: transparent;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

@@ -11,13 +11,22 @@
 //         );
 //     });
 // };
-import SignCard from "../components/SignCard";
+import Logo from "../components/Logo";
+import FormCard from "../components/FormCard";
 import "../styles/SignPage.css";
 function SignupPage() {
     return (
-        <div>
-            <h1>IO Hub</h1>
-            <SignCard />
+        <div id="sign-page-container">
+            <div id="logo-container-in-sign">
+                <Logo
+                    style={{
+                        height: "100px",
+                        borderRadius: "150%",
+                        boxShadow: "0px 0px 10px #000",
+                    }}
+                />
+            </div>
+            <FormCard />
         </div>
     );
 }

@@ -1,0 +1,21 @@
+#rating-title {
+    text-align: center;
+    font-size: 3rem;
+}
+#rating-form-container {
+    margin: 2rem;
+    padding: 2rem 6rem;
+    border: 3px ridge black;
+    border-right: none;
+    border-left: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+#ratings-container {
+    margin: 2rem;
+    padding: 2rem 6rem 0;
+}
+.not-selected {
+    filter: saturate(0);
+}

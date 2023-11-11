@@ -14,7 +14,7 @@ function Input(props) {
                 type={props.type}
                 placeholder={props.placeholder}
                 value={props.value}
-                onInput={onInput}
+                onInput={props.onInput ? props.onInput : onInput}
                 id={props.id}
             />
         </div>

@@ -1,0 +1,33 @@
+#header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.2rem 8rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+#header > a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: black;
+}
+#logo-container > img {
+    height: 5rem;
+    border-radius: 50%;
+}
+#gear-container > img {
+    height: 3.2rem;
+}
+.button-container {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+}
+#logo-container {
+    padding: 0.2rem;
+}
+
+#gear-container:hover {
+    cursor: pointer;
+    transform: rotate(360deg);
+    transition: 1s;
+}
