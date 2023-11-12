@@ -4,6 +4,7 @@ import Button from "./Button";
 import { useState } from "react";
 import Ratings from "./Ratings";
 import star from "../img/star-gold-orange-svgrepo-com.svg";
+import PropTypes from "prop-types";
 function RatingsContainer(props) {
     const page = window.location.pathname;
     const userInputs = {
@@ -108,4 +109,11 @@ function RatingsContainer(props) {
         </>
     );
 }
+RatingsContainer.propTypes = {
+    ratings: PropTypes.array,
+    id: PropTypes.string,
+    title: PropTypes.string,
+    image: PropTypes.string,
+    rating: PropTypes.number,
+};
 export default RatingsContainer;

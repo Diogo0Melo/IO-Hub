@@ -24,7 +24,8 @@ class Button extends React.Component {
         this.addGame = this.addGame.bind(this);
         this.addRating = this.addRating.bind(this);
     }
-    async signUp() {
+    async signUp(e) {
+        e.preventDefault();
         const response = await fetch(`${this.api}/users`, {
             method: "POST",
             headers: {
@@ -43,12 +44,14 @@ class Button extends React.Component {
 
         const data = await response.json();
         console.log(data);
-        this.signIn(
+        await this.signIn(
+            e,
             this.props.user["email-signup"],
             this.props.user["password-signup"]
         );
     }
-    async signIn(email, password) {
+    async signIn(e, email, password) {
+        e.preventDefault();
         const response = await fetch(`${this.api}/users/login`, {
             method: "POST",
             headers: {
@@ -65,6 +68,7 @@ class Button extends React.Component {
         sessionStorage.setItem("_token", data.token);
         sessionStorage.setItem("_userID", data._id);
         sessionStorage.setItem("_roles", data.roles);
+        window.location.href = "/";
     }
     async addCategory() {
         const response = await fetch(`${this.api}/categories`, {
