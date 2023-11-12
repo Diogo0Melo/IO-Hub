@@ -10,7 +10,9 @@ class GameContainer extends React.Component {
         this.state = {
             game: undefined,
             ratings: undefined,
+            ratingStatus: "not-rated",
         };
+        this.setState = this.setState.bind(this);
     }
     async componentDidMount() {
         const page = window.location.pathname;
@@ -29,6 +31,7 @@ class GameContainer extends React.Component {
         this.setState({ ratings: data });
         await getGameAPI(page).then((game) => this.setState({ game }));
     }
+    
     returnStars() {
         const starsArray = [];
 
@@ -104,7 +107,12 @@ class GameContainer extends React.Component {
                 </div>
                 <div className="game-container-outside relative">
                     <div className="game-container-inside">
-                        <RatingsContainer ratings={this.state.ratings} />
+                        <RatingsContainer
+                            ratings={this.state.ratings}
+                            ratingStatus={this.state.ratingStatus}
+                            setState={this.setState}
+                            // reload={[this.state.reload, this.setState]}
+                        />
                     </div>
                 </div>
             </>

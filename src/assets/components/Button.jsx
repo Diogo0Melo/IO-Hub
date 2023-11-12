@@ -107,11 +107,15 @@ class Button extends React.Component {
         console.log(data);
     }
     async addRating() {
+        const method = this.props.ratingStatus !== "editing" ? "POST" : "PUT";
+        const endPoint =
+            method === "POST" ? "ratings" : `ratings/${this.props.ratingID}`;
         const split = this.props.page.split("/");
-        const response = await fetch(`${this.api}/ratings`, {
-            method: "POST",
+        const response = await fetch(`${this.api}/${endPoint}`, {
+            method,
             headers: {
                 "Content-Type": "application/json",
+                Authorization: this.token,
             },
             body: JSON.stringify({
                 score: this.props.user.score,
@@ -122,6 +126,12 @@ class Button extends React.Component {
         });
         const data = await response.json();
         console.log(data);
+        this.props.setState((prevState) => ({
+            ...prevState,
+            ratingStatus: "rated",
+        }));
+        console.log(this.props.ratingStatus);
+        console.log(this.props.ratingID);
     }
     render() {
         const { page } = this.props;

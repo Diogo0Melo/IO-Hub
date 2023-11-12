@@ -109,5 +109,6 @@ Select.propTypes = {
     value: PropTypes.object,
     className: PropTypes.string,
     size: PropTypes.number,
+    onChange: PropTypes.func,
 };
 export default Select;

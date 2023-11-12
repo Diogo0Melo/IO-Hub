@@ -12,6 +12,7 @@ class Ratings extends React.Component {
             loaded: false,
             data: [],
         };
+        // this.onClick = this.onClick.bind(this);
     }
     async componentDidMount() {
         console.log("mounted");
@@ -27,7 +28,6 @@ class Ratings extends React.Component {
         });
         return data;
     }
-
     render() {
         const { data } = this.state;
         const returnStars = (gameScore) => {
@@ -51,12 +51,13 @@ class Ratings extends React.Component {
             });
         };
         const returnUserOrAllRatings = () => {
-            console.log(this.props.userRating);
             if (this.props.userRating) {
                 return (
                     <div
                         key={this.props.userRating.user._id}
                         className="rating-container"
+                        onClick={this.props.onClick}
+                        style={{ cursor: "pointer" }}
                     >
                         <h3>Úsuario: {this.props.userRating.user.name}</h3>
                         <h3>{returnStars()}</h3>

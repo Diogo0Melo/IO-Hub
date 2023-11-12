@@ -18,7 +18,7 @@ function RatingsContainer(props) {
         const score = id.split("star")[1];
 
         for (let i = 0; i < parent.children.length; i++) {
-            if (i >= +score) {
+            if (i > +score) {
                 parent.children[i].classList.add("not-selected");
                 continue;
             }
@@ -29,13 +29,35 @@ function RatingsContainer(props) {
             score: +score,
         }));
     };
+    const onClickUserRating = (e) => {
+        const score = e.target.querySelector("h3:nth-of-type(2)");
+        const comment = e.target.querySelector("p");
+        console.log(score);
+        console.log(comment);
+        console.log(score.children);
+        console.log(comment.textContent);
+        console.log(score.children.length);
+        setUser((prevState) => ({
+            ...prevState,
+            score: score.children.length,
+            comment: comment.textContent,
+        }));
+        props.setState((prevState) => ({
+            ...prevState,
+            ratingStatus: "editing",
+        }));
+    };
     const returnUserRating = () => {
         const userID = sessionStorage.getItem("_userID");
         const condition = props.ratings?.find((el) => el.user._id === userID);
-        if (condition) {
+
+        if (condition && props.ratingStatus !== "editing") {
             return (
                 <form id="rating-form-container">
-                    <Ratings userRating={condition} />
+                    <Ratings
+                        userRating={condition}
+                        onClick={onClickUserRating}
+                    />
                 </form>
             );
         }
@@ -46,35 +68,45 @@ function RatingsContainer(props) {
                     <img
                         src={star}
                         alt=""
-                        className="star not-selected pointer"
+                        className={`star ${
+                            user.score >= 1 ? "" : "not-selected"
+                        } pointer`}
                         id="star1"
                         onClick={onClick}
                     />
                     <img
                         src={star}
                         alt=""
-                        className="star not-selected pointer"
+                        className={`star ${
+                            user.score >= 2 ? "" : "not-selected"
+                        } pointer`}
                         id="star2"
                         onClick={onClick}
                     />
                     <img
                         src={star}
                         alt=""
-                        className="star not-selected pointer"
+                        className={`star ${
+                            user.score >= 3 ? "" : "not-selected"
+                        } pointer`}
                         id="star3"
                         onClick={onClick}
                     />
                     <img
                         src={star}
                         alt=""
-                        className="star not-selected pointer"
+                        className={`star ${
+                            user.score >= 4 ? "" : "not-selected"
+                        } pointer`}
                         id="star4"
                         onClick={onClick}
                     />
                     <img
                         src={star}
                         alt=""
-                        className="star not-selected pointer"
+                        className={`star ${
+                            user.score == 5 ? "" : "not-selected"
+                        } pointer`}
                         id="star5"
                         onClick={onClick}
                     />
@@ -94,6 +126,10 @@ function RatingsContainer(props) {
                     title={"Avaliar"}
                     page={page}
                     user={user}
+                    ratingStatus={props.ratingStatus}
+                    ratingID={condition?._id}
+                    setState={props.setState}
+                    // reload={props.reload}
                 />
             </form>
         );
@@ -114,6 +150,6 @@ RatingsContainer.propTypes = {
     id: PropTypes.string,
     title: PropTypes.string,
     image: PropTypes.string,
-    rating: PropTypes.number,
+    setState: PropTypes.func,
 };
 export default RatingsContainer;
