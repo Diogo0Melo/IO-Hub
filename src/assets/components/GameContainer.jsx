@@ -104,7 +104,7 @@ class GameContainer extends React.Component {
                 </div>
                 <div className="game-container-outside relative">
                     <div className="game-container-inside">
-                        <RatingsContainer />
+                        <RatingsContainer ratings={this.state.ratings} />
                     </div>
                 </div>
             </>

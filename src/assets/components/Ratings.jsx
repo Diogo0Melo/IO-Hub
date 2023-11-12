@@ -56,7 +56,23 @@ class Ratings extends React.Component {
                 );
             });
         };
-        return <> {this.state.loaded ? returnRatings() : "Carregando..."} </>;
+        const returnUserOrAllRatings = () => {
+            console.log(this.props.userRating);
+            if (this.props.userRating) {
+                return (
+                    <div
+                        key={this.props.userRating.user._id}
+                        className="rating-container"
+                    >
+                        <h3>Úsuario: {this.props.userRating.user.name}</h3>
+                        <h3>{returnStars()}</h3>
+                        <p>{this.props.userRating.description}</p>
+                    </div>
+                );
+            }
+            return this.state.loaded ? returnRatings() : "Carregando...";
+        };
+        return <> {returnUserOrAllRatings()} </>;
     }
 }
 export default Ratings;

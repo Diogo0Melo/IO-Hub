@@ -4,7 +4,7 @@ import Button from "./Button";
 import { useState } from "react";
 import Ratings from "./Ratings";
 import star from "../img/star-gold-orange-svgrepo-com.svg";
-function RatingsContainer() {
+function RatingsContainer(props) {
     const page = window.location.pathname;
     const userInputs = {
         score: 0,
@@ -28,11 +28,17 @@ function RatingsContainer() {
             score: +score,
         }));
     };
-    console.log(user);
-    return (
-        <>
-            <h3 id="rating-title">Avaliações</h3>
-
+    const returnUserRating = () => {
+        const userID = sessionStorage.getItem("_userID");
+        const condition = props.ratings?.find((el) => el.user._id === userID);
+        if (condition) {
+            return (
+                <form id="rating-form-container">
+                    <Ratings userRating={condition} />
+                </form>
+            );
+        }
+        return (
             <form id="rating-form-container">
                 <h3>O que achou do jogo?</h3>
                 <div>
@@ -89,6 +95,13 @@ function RatingsContainer() {
                     user={user}
                 />
             </form>
+        );
+    };
+    return (
+        <>
+            <h3 id="rating-title">Avaliações</h3>
+
+            {returnUserRating()}
             <div id="ratings-container">
                 <Ratings />
             </div>
