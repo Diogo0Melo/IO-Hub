@@ -16,7 +16,6 @@ class GameContainer extends React.Component {
         this.setState = this.setState.bind(this);
     }
     async componentDidMount() {
-        console.log(this.state);
         const page = window.location.pathname;
         const gameID = page.split("/")[2];
         const ratings = await getRatingsAPI(gameID);
@@ -25,10 +24,8 @@ class GameContainer extends React.Component {
             game,
             ratings,
         });
-        console.log(this.state);
     }
     async shouldComponentUpdate(nextProps, nextState) {
-        console.log(this.state);
         if (
             (this.state.ratingStatus === "editing" &&
                 nextState.ratingStatus === "rated") ||
@@ -94,13 +91,16 @@ class GameContainer extends React.Component {
                                 <div className="video-responsive">
                                     <iframe
                                         width="430"
-                                        height="235"
+                                        height="250"
                                         src={this.state.game?.videoURL}
+                                        style={{
+                                            backgroundColor: "gray",
+                                            marginLeft: "1rem",
+                                        }}
+                                        title="YouTube video player"
                                         frameBorder="0"
-                                        style={{ backgroundColor: "gray" }}
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowFullScreen
-                                        title="Embedded youtube"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     />
                                 </div>
                             </div>
