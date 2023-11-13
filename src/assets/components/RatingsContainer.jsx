@@ -31,13 +31,9 @@ function RatingsContainer(props) {
         }));
     };
     const onClickUserRating = (e) => {
-        const score = e.target.querySelector("h3:nth-of-type(2)");
-        const comment = e.target.querySelector("p");
-        console.log(score);
-        console.log(comment);
-        console.log(score.children);
-        console.log(comment.textContent);
-        console.log(score.children.length);
+        const parent = e.target.parentElement.parentElement;
+        const score = parent.querySelector("h3:nth-of-type(2)");
+        const comment = parent.querySelector("p");
         setUser((prevState) => ({
             ...prevState,
             score: score.children.length,

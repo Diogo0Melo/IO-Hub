@@ -7,6 +7,8 @@ const data = await response.json();
 function GameCardsContainer(props) {
     const page = window.location.pathname;
     if (props.sort === "score") data.sort((a, b) => b.score - a.score);
+    else data.sort((a, b) => a.name.localeCompare(b.name));
+
     const returnGames = () => {
         const name = props.state?.search.toLowerCase();
 

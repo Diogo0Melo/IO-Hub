@@ -2,6 +2,7 @@ import "../styles/Ratings.css";
 import React from "react";
 import star from "../img/star-gold-orange-svgrepo-com.svg";
 import PropTypes from "prop-types";
+import edit from "../img/edit-svgrepo-com.svg";
 class Ratings extends React.Component {
     static propTypes = {
         userRating: PropTypes.object,
@@ -52,10 +53,21 @@ class Ratings extends React.Component {
                     <div
                         key={this.props.userRating.user._id}
                         className="rating-container"
-                        onClick={this.props.onClick}
                         style={{ cursor: "pointer" }}
                     >
-                        <h3>Úsuario: {this.props.userRating.user.name}</h3>
+                        <h3
+                            style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                            }}
+                        >
+                            Úsuario: {this.props.userRating.user.name}{" "}
+                            <img
+                                src={edit}
+                                style={{ width: "20px" }}
+                                onClick={this.props.onClick}
+                            />
+                        </h3>
                         <h3>{returnStars()}</h3>
                         <p>{this.props.userRating.description}</p>
                     </div>
