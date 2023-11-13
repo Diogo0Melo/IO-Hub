@@ -9,7 +9,7 @@ function MainPage() {
             <Header />
 
             <GameCardsContainer title="Adicionados Recentemente" />
-            <GameCardsContainer title="Melhores Avaliados" />
+            <GameCardsContainer title="Melhores Avaliados" sort={"score"} />
             <Footer />
             <FixedButton />
         </div>

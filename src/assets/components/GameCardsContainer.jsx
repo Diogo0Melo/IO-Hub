@@ -6,6 +6,7 @@ const data = await response.json();
 
 function GameCardsContainer(props) {
     const page = window.location.pathname;
+    if (props.sort === "score") data.sort((a, b) => b.score - a.score);
     const returnGames = () => {
         const name = props.state?.search.toLowerCase();
 
@@ -32,7 +33,6 @@ function GameCardsContainer(props) {
                     title={game.name}
                     image={game.imageURL}
                     score={game.score}
-                    // rating={game.rating}
                 />
             );
         });
@@ -53,5 +53,6 @@ GameCardsContainer.propTypes = {
     title: PropTypes.string,
     className: PropTypes.string,
     state: PropTypes.object,
+    sort: PropTypes.string,
 };
 export default GameCardsContainer;

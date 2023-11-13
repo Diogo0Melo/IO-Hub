@@ -13,25 +13,7 @@ class GameCard extends React.Component {
     };
     constructor(props) {
         super(props);
-        // this.state = {
-        //     game: undefined,
-        //     ratings: undefined,
-        //     // resposta: undefined,
-        // };
     }
-    // async componentDidMount() {
-    //     const response = await fetch(
-    //         `https://back-end-frameworkk.vercel.app/games/${this.props.id}/ratings`,
-    //         {
-    //             method: "GET",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //         }
-    //     );
-    //     const data = await response.json();
-    //     this.setState({ ratings: data, resposta: true });
-    // }
     returnStars() {
         const starsArray = [];
         const score = this.props.score.toPrecision(1);
