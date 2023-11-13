@@ -5,29 +5,25 @@ import PropTypes from "prop-types";
 class Ratings extends React.Component {
     static propTypes = {
         userRating: PropTypes.object,
+        onClick: PropTypes.func,
+        ratings: PropTypes.array,
     };
     constructor(props) {
         super(props);
         this.state = {
-            loaded: false,
             data: [],
         };
-        // this.onClick = this.onClick.bind(this);
     }
-    async componentDidMount() {
-        console.log("mounted");
-        const page = window.location.pathname;
-        const split = page.split("/");
-        const response = await fetch(
-            `https://back-end-frameworkk.vercel.app/games/${split[2]}/ratings`
-        );
-        const data = await response.json();
-        this.setState({
-            loaded: true,
-            data,
-        });
-        return data;
+    componentDidUpdate(prevProps) {
+        if (prevProps.ratings !== this.props.ratings) {
+            this.setState({
+                data: this.props.ratings,
+            });
+            return true;
+        }
+        return false;
     }
+
     render() {
         const { data } = this.state;
         const returnStars = (gameScore) => {
@@ -65,9 +61,10 @@ class Ratings extends React.Component {
                     </div>
                 );
             }
-            return this.state.loaded ? returnRatings() : "Carregando...";
+            return this.state.data ? returnRatings() : "Carregando...";
         };
         return <> {returnUserOrAllRatings()} </>;
     }
 }
+
 export default Ratings;

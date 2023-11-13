@@ -1,114 +1,87 @@
-// import countries from "../js/getCountriesAPI";
-// const addCountries = () => {
-//     const countriesAtoZ = Array.from(countries).sort();
-//     return countriesAtoZ.map((country) => {
-//         return (
-//             <option key={country} value={country}>
-//                 {country}
-//             </option>
-//         );
-//     });
-// };
-// function Select(props) {
-//     const onChange = (e) => {
-//         const { id, value } = e.target;
-//         props.setState((prevState) => ({ ...prevState, [id]: value }));
-//     };
-//     return (
-//         <select name="country" id="country" onChange={onChange}>
-//             <option value={props.value} disabled>
-//                 Selecione o seu país
-//             </option>
-//             {addCountries()}
-//         </select>
-//     );
-// }
-// export default Select;
+import getCountriesAPI from "../js/getCountriesAPI";
+import getCategoriesAPI from "../js/getCategoriesAPI";
 import "../styles/Select.css";
 import PropTypes from "prop-types";
-const response = await fetch(
-    "https://back-end-frameworkk.vercel.app/categories",
-    {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
+import React from "react";
+
+class Select extends React.Component {
+    static propTypes = {
+        disabledOption: PropTypes.string,
+        page: PropTypes.string,
+        id: PropTypes.string,
+        name: PropTypes.string,
+        setState: PropTypes.func,
+        value: PropTypes.object,
+        className: PropTypes.string,
+        size: PropTypes.number,
+        onChange: PropTypes.func,
+    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: [],
+        };
     }
-);
-const data = await response.json();
-console.log(data);
+    async componentDidMount() {
+        const page = window.location.pathname;
 
-// const set = new Set();
-function Select(props) {
-    // const showSelectedCategories = () =>
-    //     Array.from(set).map((category) => {
-    //         const categoryParsed = JSON.parse(category);
-    //         return `${categoryParsed.name} `;
-    //     });
-    const returnCategories = () => {
-        return data.map((category) => {
-            return (
-                <option key={category.name} value={JSON.stringify(category)}>
-                    {category.name}
-                </option>
-            );
-        });
-    };
-    const onChange = (e) => {
-        const { id, value } = e.target;
-        // if (id === "categories" && props.page === "/game") {
-        //     // if (set.has(value)) {
-        //     //     set.delete(value);
-        //     //     props.setState((prevState) => ({
-        //     //         ...prevState,
-        //     //         category: set,
-        //     //     }));
-        //     //     return;
-        //     // }
-        //     // set.add(value);
-        //     props.setState((prevState) => ({
-        //         ...prevState,
-        //         categories: value,
-        //     }));
-        //     return;
-        // }
-        console.log(props.value);
-        props.setState((prevState) => ({
-            ...prevState,
-            [id]: value,
-        }));
-    };
+        if (page === "/game" || page === "/search") {
+            const categories = await getCategoriesAPI();
+            this.setState({ data: categories });
+            console.log(categories);
+            return;
+        }
+        const countries = await getCountriesAPI();
+        this.setState({ data: countries });
+        console.log(countries);
+    }
+    render() {
+        const returnCategories = () => {
+            return this.state.data.map((category) => {
+                return (
+                    <option
+                        key={category.name || category}
+                        value={JSON.stringify(category)}
+                    >
+                        {category.name || category}
+                    </option>
+                );
+            });
+        };
+        const onChange = (e) => {
+            const { id, value } = e.target;
 
-    return (
-        <div id="select-container">
-            {props.page === "/search" || (
-                <label htmlFor={props.id}>Categorias Disponiveis</label>
-            )}
-            <select
-                name={props.name}
-                value={props.value}
-                id={props.id}
-                onChange={props.onChange ? props.onChange : onChange}
-                className={props.className}
-                // size={props.size ? props.size : undefined}
-            >
-                <option value={""} disabled>
-                    {props.disabledOption}
-                </option>
-                {returnCategories()}
-            </select>
-        </div>
-    );
+            this.props.setState((prevState) => ({
+                ...prevState,
+                [id]: value,
+            }));
+        };
+
+        return (
+            <div id="select-container">
+                {this.props.page === "/search" || (
+                    <label htmlFor={this.props.id}>
+                        Categorias Disponiveis
+                    </label>
+                )}
+                <select
+                    name={this.props.name}
+                    value={this.props.value}
+                    id={this.props.id}
+                    onChange={
+                        this.props.onChange ? this.props.onChange : onChange
+                    }
+                    className={this.props.className}
+                    // size={this.props.size ? this.props.size : undefined}
+                >
+                    <option value={""} disabled>
+                        {this.props.disabledOption}
+                    </option>
+                    {this.state.data.length && returnCategories()}
+                </select>
+            </div>
+        );
+    }
 }
-Select.propTypes = {
-    disabledOption: PropTypes.string,
-    page: PropTypes.string,
-    id: PropTypes.string,
-    name: PropTypes.string,
-    setState: PropTypes.func,
-    value: PropTypes.object,
-    className: PropTypes.string,
-    size: PropTypes.number,
-    onChange: PropTypes.func,
-};
+
 export default Select;

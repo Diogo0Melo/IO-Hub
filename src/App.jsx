@@ -16,6 +16,7 @@ function App() {
             <Route path="/category" element={<FormCard />} />
             <Route path="/game" element={<FormCard />} />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/settings" element={<FormCard />} />
             {/* </Route> */}
         </Routes>
     );

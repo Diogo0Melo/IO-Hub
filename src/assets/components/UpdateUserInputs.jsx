@@ -2,16 +2,19 @@ import Input from "./Input";
 import Button from "./Button";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import decodeUser from "../js/decodeUser";
 import Select from "./Select";
-function SignupInputs(props) {
+function UpdateUserInputs(props) {
+    const infos = decodeUser();
+    const birthDate = infos.birthDate.split("T")[0];
     const UserInputs = {
+        email: infos.email,
+        name: infos.name,
+        birthDate: birthDate,
+        state: infos.state,
+        country: infos.country,
+        password: "",
         confirmPassword: "",
-        "password-signup": "",
-        "email-signup": "",
-        name: "",
-        birthDate: "",
-        state: "",
-        country: "",
     };
     const [user, setUser] = useState(UserInputs);
     return (
@@ -30,9 +33,9 @@ function SignupInputs(props) {
                     className="input"
                     type="email"
                     placeholder="Email"
-                    value={user["email-signup"]}
+                    value={user.email}
                     setState={setUser}
-                    id={"email-signup"}
+                    id={"email"}
                     name={"Email"}
                 />
 
@@ -45,6 +48,7 @@ function SignupInputs(props) {
                     id={"birthDate"}
                     name={"Data de Nascimento"}
                 />
+                {/* <Select value={user.country} setState={setUser} /> */}
                 <Select
                     className={"input"}
                     value={user.country}
@@ -53,48 +57,40 @@ function SignupInputs(props) {
                     id={"country"}
                     disabledOption={"Selecione o seu país"}
                 />
-                {/* <Input
-                    className="input"
-                    type="text"
-                    placeholder="Country"
-                    value={user.country}
-                    setState={setUser}
-                    id={"country"}
-                    name={"País"}
-                /> */}
                 <Input
                     className="input"
                     type="password"
-                    placeholder="Password"
-                    value={user["password-signup"]}
+                    placeholder="Senha"
+                    value={user.password}
                     setState={setUser}
-                    id={"password-signup"}
+                    id={"password"}
                     name={"Senha"}
                 />
                 <Input
                     className="input"
                     type="password"
-                    placeholder="Confirm Password"
+                    placeholder="Confirme sua senha"
                     value={user.confirmPassword}
                     setState={setUser}
                     id={"confirmPassword"}
                     name={"Confirme sua senha"}
                 />
             </div>
+
             <div id="signup-button-container">
                 <Button
                     className="button"
                     type="submit"
-                    title="Cadastrar"
+                    title="Atualizar"
                     user={user}
                     page={props.page}
-                    to={"/"}
+                    to={"#"}
                 />
             </div>
         </>
     );
 }
-SignupInputs.propTypes = {
+UpdateUserInputs.propTypes = {
     page: PropTypes.string,
 };
-export default SignupInputs;
+export default UpdateUserInputs;

@@ -5,6 +5,7 @@ import Logo from "./Logo";
 import Select from "./Select";
 import Input from "./Input";
 import image from "../img/close-svgrepo-com.svg";
+import PropTypes from "prop-types";
 function Header(props) {
     const page = window.location.pathname;
 
@@ -20,7 +21,9 @@ function Header(props) {
                             <button className="button">Pesquisar</button>
                         </Link>
                         <Link to="/recomendations">
-                            <button className="button">Recomendar</button>
+                            <button className="button" disabled>
+                                Recomendar
+                            </button>
                         </Link>
                     </>
                 );
@@ -97,5 +100,11 @@ function Header(props) {
         </div>
     );
 }
-
+Header.propTypes = {
+    state: PropTypes.object,
+    setState: PropTypes.func,
+    onInput: PropTypes.func,
+    onChange: PropTypes.func,
+    onClick: PropTypes.func,
+};
 export default Header;

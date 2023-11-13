@@ -19,12 +19,6 @@ function GameCardsContainer(props) {
             const gameName = game.name.toLowerCase();
             const categoryName = game.category.name.toLowerCase();
 
-            console.log(
-                (name || category) &&
-                    (!gameName.includes(name) ||
-                        !categoryName.includes(category))
-            );
-
             if (
                 (name && !gameName.includes(name)) ||
                 (category && !categoryName.includes(category))
@@ -37,7 +31,8 @@ function GameCardsContainer(props) {
                     key={game._id}
                     title={game.name}
                     image={game.imageURL}
-                    rating={game.rating}
+                    score={game.score}
+                    // rating={game.rating}
                 />
             );
         });
@@ -56,5 +51,7 @@ function GameCardsContainer(props) {
 }
 GameCardsContainer.propTypes = {
     title: PropTypes.string,
+    className: PropTypes.string,
+    state: PropTypes.object,
 };
 export default GameCardsContainer;

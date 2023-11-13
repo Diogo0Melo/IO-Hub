@@ -6,6 +6,7 @@ import SigninInputs from "./SigninInputs";
 // import Select from "./Select";
 import CategoryInputs from "./CategoryInputs";
 import GameInputs from "./GameInputs";
+import UpdateUserInputs from "./UpdateUserInputs";
 
 function FormCard() {
     const page = window.location.pathname;
@@ -46,6 +47,15 @@ function FormCard() {
                 <p>
                     <Link to={"/category"}>Adicionar uma Categoria</Link>
                 </p>
+            </>
+        )) ||
+        (page === "/settings" && (
+            <>
+                <h2>Configurações</h2>
+                <UpdateUserInputs page={page} />
+                {/* <p>
+                    <Link to={"/signin"}>Sair</Link>
+                </p> */}
             </>
         ));
 

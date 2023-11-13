@@ -15,6 +15,9 @@ class Button extends React.Component {
         to: PropTypes.string,
         game: PropTypes.object,
         category: PropTypes.object,
+        ratingStatus: PropTypes.string,
+        ratingID: PropTypes.string,
+        setState: PropTypes.func,
     };
     constructor(props) {
         super(props);
@@ -23,6 +26,7 @@ class Button extends React.Component {
         this.addCategory = this.addCategory.bind(this);
         this.addGame = this.addGame.bind(this);
         this.addRating = this.addRating.bind(this);
+        this.updateUser = this.updateUser.bind(this);
     }
     async signUp(e) {
         e.preventDefault();
@@ -107,7 +111,7 @@ class Button extends React.Component {
         console.log(data);
     }
     async addRating() {
-        const method = this.props.ratingStatus !== "editing" ? "POST" : "PUT";
+        const method = this.props.ratingStatus === "editing" ? "PUT" : "POST";
         const endPoint =
             method === "POST" ? "ratings" : `ratings/${this.props.ratingID}`;
         const split = this.props.page.split("/");
@@ -115,7 +119,6 @@ class Button extends React.Component {
             method,
             headers: {
                 "Content-Type": "application/json",
-                Authorization: this.token,
             },
             body: JSON.stringify({
                 score: this.props.user.score,
@@ -133,6 +136,25 @@ class Button extends React.Component {
         console.log(this.props.ratingStatus);
         console.log(this.props.ratingID);
     }
+    async updateUser() {
+        const response = await fetch(`${this.api}/users/${this.userID}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: this.token,
+            },
+            body: JSON.stringify({
+                name: this.props.user.name,
+                email: this.props.user.email,
+                birthDate: this.props.user.birthDate,
+                country: this.props.user.country,
+                password: this.props.user.password,
+                confirmPassword: this.props.user.confirmPassword,
+            }),
+        });
+        const data = await response.json();
+        console.log(data);
+    }
     render() {
         const { page } = this.props;
         const split = page.split("/");
@@ -141,7 +163,8 @@ class Button extends React.Component {
             (this.props.page === "/signin" && this.signIn) ||
             (this.props.page === "/category" && this.addCategory) ||
             (this.props.page === "/game" && this.addGame) ||
-            (this.props.page === `/game/${split[2]}` && this.addRating);
+            (this.props.page === `/game/${split[2]}` && this.addRating) ||
+            (this.props.page === "/settings" && this.updateUser);
 
         return (
             <Link to={this.props.to}>

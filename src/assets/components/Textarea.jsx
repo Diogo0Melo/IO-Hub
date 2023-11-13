@@ -1,4 +1,5 @@
 import "../styles/Textarea.css";
+import PropTypes from "prop-types";
 function Textarea(props) {
     const onInput = (e) => {
         const { id, value } = e.target;
@@ -15,8 +16,18 @@ function Textarea(props) {
                 placeholder={props.placeholder}
                 rows={props.rows ? props.rows : 3}
                 maxLength="255"
-            ></textarea>
+            />
         </div>
     );
 }
+Textarea.propTypes = {
+    name: PropTypes.string,
+    value: PropTypes.string,
+    className: PropTypes.string,
+    id: PropTypes.string,
+    placeholder: PropTypes.string,
+    rows: PropTypes.number,
+    cols: PropTypes.number,
+    setState: PropTypes.func,
+};
 export default Textarea;

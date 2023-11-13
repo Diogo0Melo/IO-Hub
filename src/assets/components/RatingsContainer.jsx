@@ -18,12 +18,13 @@ function RatingsContainer(props) {
         const score = id.split("star")[1];
 
         for (let i = 0; i < parent.children.length; i++) {
-            if (i > +score) {
+            if (i + 1 > +score) {
                 parent.children[i].classList.add("not-selected");
                 continue;
             }
             parent.children[i].classList.remove("not-selected");
         }
+
         setUser((prevState) => ({
             ...prevState,
             score: +score,
@@ -67,7 +68,6 @@ function RatingsContainer(props) {
                 <div>
                     <img
                         src={star}
-                        alt=""
                         className={`star ${
                             user.score >= 1 ? "" : "not-selected"
                         } pointer`}
@@ -76,7 +76,6 @@ function RatingsContainer(props) {
                     />
                     <img
                         src={star}
-                        alt=""
                         className={`star ${
                             user.score >= 2 ? "" : "not-selected"
                         } pointer`}
@@ -85,7 +84,6 @@ function RatingsContainer(props) {
                     />
                     <img
                         src={star}
-                        alt=""
                         className={`star ${
                             user.score >= 3 ? "" : "not-selected"
                         } pointer`}
@@ -94,7 +92,6 @@ function RatingsContainer(props) {
                     />
                     <img
                         src={star}
-                        alt=""
                         className={`star ${
                             user.score >= 4 ? "" : "not-selected"
                         } pointer`}
@@ -103,9 +100,8 @@ function RatingsContainer(props) {
                     />
                     <img
                         src={star}
-                        alt=""
                         className={`star ${
-                            user.score == 5 ? "" : "not-selected"
+                            user.score >= 5 ? "" : "not-selected"
                         } pointer`}
                         id="star5"
                         onClick={onClick}
@@ -119,11 +115,12 @@ function RatingsContainer(props) {
                     setState={setUser}
                     value={user.comment}
                     rows={6}
+                    cols={50}
                 />
                 <Button
                     className={"button"}
                     type={"submit"}
-                    title={"Avaliar"}
+                    title={"Enviar"}
                     page={page}
                     user={user}
                     ratingStatus={props.ratingStatus}
@@ -140,7 +137,7 @@ function RatingsContainer(props) {
 
             {returnUserRating()}
             <div id="ratings-container">
-                <Ratings />
+                <Ratings ratings={props.ratings} />
             </div>
         </>
     );
@@ -151,5 +148,6 @@ RatingsContainer.propTypes = {
     title: PropTypes.string,
     image: PropTypes.string,
     setState: PropTypes.func,
+    ratingStatus: PropTypes.string,
 };
 export default RatingsContainer;
