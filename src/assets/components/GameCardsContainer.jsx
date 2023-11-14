@@ -1,10 +1,14 @@
 import GameCard from "./GameCard";
 import "../styles/GameCardsContainer.css";
 import PropTypes from "prop-types";
-const response = await fetch("https://back-end-frameworkk.vercel.app/games");
-const data = await response.json();
+import getGamesAPI from "../js/getGamesAPI";
+import { useState, useEffect } from "react";
 
 function GameCardsContainer(props) {
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        getGamesAPI().then((data) => setData(data));
+    }, []);
     const page = window.location.pathname;
     if (props.sort === "score") data.sort((a, b) => b.score - a.score);
     else data.sort((a, b) => a.name.localeCompare(b.name));
