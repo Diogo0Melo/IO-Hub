@@ -9,7 +9,7 @@ function App() {
     return (
         <Routes>
             {/* <Route path="/" element={<NoChangePage />}> */}
-            <Route path="/" element={<MainPage />} />
+            <Route path="/IO-Hub/" element={<MainPage />} />
             <Route path="/game/*" element={<GamePage />} />
             <Route path="/signup" element={<FormCard />} />
             <Route path="/signin" element={<FormCard />} />
