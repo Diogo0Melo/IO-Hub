@@ -88,7 +88,7 @@ function SignupInputs(props) {
                     title="Cadastrar"
                     user={user}
                     page={props.page}
-                    to={"/"}
+                    to={"#"}
                 />
             </div>
         </>

@@ -119,6 +119,7 @@ function RatingsContainer(props) {
                     title={"Enviar"}
                     page={page}
                     user={user}
+                    
                     ratingStatus={props.ratingStatus}
                     ratingID={condition?._id}
                     setState={props.setState}

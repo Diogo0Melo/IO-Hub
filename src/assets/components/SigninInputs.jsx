@@ -35,7 +35,7 @@ function SigninInputs(props) {
                     title="Entrar"
                     user={user}
                     page={props.page}
-                    to="/"
+                    to="/IO-Hub"
                 />
             </div>
         </div>

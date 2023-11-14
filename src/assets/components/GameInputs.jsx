@@ -82,7 +82,7 @@ function GameInputs(props) {
                     type="submit"
                     title="Adicionar"
                     page={props.page}
-                    to="./"
+                    to="#"
                     game={game}
                 />
             </div>

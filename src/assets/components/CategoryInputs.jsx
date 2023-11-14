@@ -22,7 +22,7 @@ function CategoryInputs(props) {
                     title="Adicionar"
                     category={category}
                     page={props.page}
-                    to="./"
+                    to="#"
                 />
             </div>
         </div>
