@@ -111,6 +111,7 @@ class Button extends React.Component {
         console.log(data);
     }
     async addRating() {
+        if (!this.token || !this.userID) window.location.href = `/signin`;
         const method = this.props.ratingStatus === "editing" ? "PUT" : "POST";
         const endPoint =
             method === "POST" ? "ratings" : `ratings/${this.props.ratingID}`;
